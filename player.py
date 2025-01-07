@@ -36,7 +36,6 @@ class Player(CircleShape):
         
 
     def update(self, dt):
-        print(f"{dt}, {self.timer}")
         self.timer = self.timer - dt
         keys = pygame.key.get_pressed()
         if keys[pygame.K_SPACE]:

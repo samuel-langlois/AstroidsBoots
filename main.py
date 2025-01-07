@@ -11,6 +11,7 @@ from shot import Shot
 def main ():
     # initialize pygame
     pygame.init()
+    score = 0
 
     # remove below later?
     print("Starting asteroids!")
@@ -23,6 +24,8 @@ def main ():
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
     shots = pygame.sprite.Group()
+    font = pygame.font.Font(None, 36)
+    
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
@@ -38,6 +41,8 @@ def main ():
     # Create the objects
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_RADIUS)
     asteroidfield = AsteroidField()
+    
+    
 
     while True:
         for event in pygame.event.get():
@@ -54,10 +59,12 @@ def main ():
             for s in shots:
                 if s.colliding(a):
                     s.kill()
-                    a.kill()
+                    score += a.split()
             
         for d in drawable:
             d.draw(screen)
+        text_surface = font.render(f"Score: {score}", True, (255, 255, 255))
+        screen.blit(text_surface, (0, 0))
         pygame.display.flip()
         dt = clock.tick(60) / 1000
 
