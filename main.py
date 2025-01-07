@@ -51,9 +51,12 @@ def main ():
             if a.colliding(player):
                 print("Game Over!!")
                 return
-        #print("--- Frame Start ---")#debugging
+            for s in shots:
+                if s.colliding(a):
+                    s.kill()
+                    a.kill()
+            
         for d in drawable:
-            #print(f"Sprite type: {type(d)}")#debugging
             d.draw(screen)
         pygame.display.flip()
         dt = clock.tick(60) / 1000
